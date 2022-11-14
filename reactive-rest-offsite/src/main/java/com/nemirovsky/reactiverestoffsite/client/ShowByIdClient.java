@@ -1,6 +1,7 @@
 package com.nemirovsky.reactiverestoffsite.client;
 
 import com.nemirovsky.reactiverestoffsite.dto.SimpleResponce;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -11,8 +12,15 @@ public class ShowByIdClient {
 
     private final WebClient client;
 
-    public ShowByIdClient(WebClient.Builder builder) {
-        this.client = builder.baseUrl("http://localhost:8082").build();
+// Not working somehow, look later, will use environment instead
+//    @Value("${server.port}")
+//    private String serverPort;
+
+    private final Environment env;
+
+    public ShowByIdClient(WebClient.Builder builder, Environment env) {
+        this.env = env; // not-so-beautiful workaround initializing environment
+        this.client = builder.baseUrl("http://localhost:" + env.getProperty("server.port")).build();
     }
 
     public Mono<String> getMessage() {

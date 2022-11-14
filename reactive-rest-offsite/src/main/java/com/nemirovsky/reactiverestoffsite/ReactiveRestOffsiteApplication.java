@@ -10,9 +10,9 @@ public class ReactiveRestOffsiteApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ReactiveRestOffsiteApplication.class, args);
-        ShowByIdClient showByIdClient = context.getBean(ShowByIdClient.class);
+        ShowByIdClient client = context.getBean(ShowByIdClient.class);
         // We need to block for the content here or the JVM might exit before the message is logged
-        System.out.println(">> message = " + showByIdClient.getMessage().block());
+        System.out.println(">> message = " + client.getMessage().block());
     }
 
 }

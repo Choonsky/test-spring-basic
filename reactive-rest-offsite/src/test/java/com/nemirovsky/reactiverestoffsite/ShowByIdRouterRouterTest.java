@@ -11,14 +11,14 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
+//@ExtendWith(SpringExtension.class) -- already in @SpringBootTest
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ShowByIdRouterRouterTest {
     @Autowired
     private WebTestClient webTestClient;
 
     @Test
-    public void testHello() {
+    public void testShowById() {
         webTestClient
                 // Create a GET request to test an endpoint
                 .get().uri("/54321")
